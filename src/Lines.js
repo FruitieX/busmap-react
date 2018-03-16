@@ -98,6 +98,7 @@ export default class Autocomplete extends Component {
 
     if (!lines.length) {
       return [{
+        shortName: '-',
         longName: 'No search results'
       }];
     }
