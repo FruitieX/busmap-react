@@ -33,7 +33,7 @@ export default class Autocomplete extends Component {
   };
 
   changeHandler = e => this.setState({ search: e.target.value });
-  submitHandler = lineId => () => {
+  submitHandler = lineId => {
     if (!lineId || !lineId.length) return;
 
     this.setState({ search: '' });
@@ -119,7 +119,7 @@ export default class Autocomplete extends Component {
             renderItem={this.renderItem}
             value={this.state.search}
             onChange={this.changeHandler}
-            onSelect={this.submitHandler(this.state.search)}
+            onSelect={this.submitHandler}
             inputProps={{ placeholder: 'Enter bus line number' }}
             ref={this.saveRef}
             wrapperStyle={{ zIndex: 10 }}
