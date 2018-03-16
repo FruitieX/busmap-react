@@ -111,7 +111,7 @@ export default class Autocomplete extends Component {
   render() {
     return (
       <div style={{ height: 30, position: 'relative' }}>
-        <div style={{ backgroundColor: 'white', position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', height: 30, alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'white', position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', height: 30, alignItems: 'center', zIndex: 1 }}>
           <ReactAutocomplete
             items={this.findLines()}
             getItemValue={(item) => item.shortName}
