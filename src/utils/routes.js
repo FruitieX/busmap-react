@@ -24,7 +24,17 @@ export const getRoutes = () => {
       })
       .then(response => response.json());
 
-      callback(response.data.routes);
+      // get rid of duplicates, wtf hsl
+      const routes = [];
+      response.data.routes.forEach(route => {
+        if (!routes.find(existingRoute => existingRoute.shortName === route.shortName)) {
+          routes.push(route);
+        } else {
+          console.log('skipping duplicate route', route);
+        }
+      });
+
+      callback(routes);
     } catch (e) {
       console.log('failed to fetch routes:', e);
       setTimeout(() => doFetch(callback), 1000);
