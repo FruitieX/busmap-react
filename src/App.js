@@ -148,18 +148,18 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ height: '100%' }}>
-        <Map
-          lines={this.props.lines}
-          markers={this.state.markers}
-          region={this.props.region}
-          polylines={this.props.polylines}
-        />
+      <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
         <Lines
           lines={this.props.lines}
           availableRoutes={this.props.availableRoutes}
           addLine={this.addAndSub}
           removeLine={this.removeAndUnsub}
+        />
+        <Map
+          lines={this.props.lines}
+          markers={this.state.markers}
+          region={this.props.region}
+          polylines={this.props.polylines}
         />
       </div>
     );

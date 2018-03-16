@@ -110,19 +110,21 @@ export default class Autocomplete extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: 'white', position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', height: 30, alignItems: 'center' }}>
-        <ReactAutocomplete
-          items={this.findLines()}
-          getItemValue={(item) => item.shortName}
-          renderItem={this.renderItem}
-          value={this.state.search}
-          onChange={this.changeHandler}
-          onSelect={this.submitHandler(this.state.search)}
-          inputProps={{ placeholder: 'Enter bus line number' }}
-          ref={this.saveRef}
-          wrapperStyle={{ zIndex: 10 }}
-        />
-        {this.renderSelectedLines()}
+      <div style={{ height: 30, position: 'relative' }}>
+        <div style={{ backgroundColor: 'white', position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', height: 30, alignItems: 'center' }}>
+          <ReactAutocomplete
+            items={this.findLines()}
+            getItemValue={(item) => item.shortName}
+            renderItem={this.renderItem}
+            value={this.state.search}
+            onChange={this.changeHandler}
+            onSelect={this.submitHandler(this.state.search)}
+            inputProps={{ placeholder: 'Enter bus line number' }}
+            ref={this.saveRef}
+            wrapperStyle={{ zIndex: 10 }}
+          />
+          {this.renderSelectedLines()}
+        </div>
       </div>
     );
   }

@@ -69,7 +69,7 @@ export default class Map extends Component {
       <MyMapComponent
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAptYb9QxBM9905ZkKHCzD-jH3no0rDw5E"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ position: 'absolute', top: 30, width: '100%', height: '100%' }} />}
+        containerElement={<div style={{ width: '100%', flex: 1}} />}
         mapElement={<div style={{ height: `100%` }} />}
       >
         {this.renderMarkers()}
