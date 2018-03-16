@@ -71,7 +71,8 @@ export const getPolylines = (gtfsIdLines) => {
       response.data.routes.forEach(route => {
         const polyline = [];
 
-        // take only first pattern, yolo
+        // sort by pattern length and choose longest
+        route.patterns.sort((a, b) => b.geometry.length - a.geometry.length);
         route.patterns[0].geometry.forEach(coord => {
           polyline.push({
             lat: coord.lat,
