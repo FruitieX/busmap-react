@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactAutocomplete from 'react-autocomplete';
 
 import styled from 'styled-components/primitives';
@@ -24,7 +24,7 @@ const Suggestion = styled.Touchable`
   background-color: ${props => props.isSelected ? 'lightgray' : 'white'};
 `;
 
-export default class Autocomplete extends Component {
+export default class Autocomplete extends React.PureComponent {
   state = {
     search: '',
   };
