@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 import { indexToHue } from './utils/routes';
-import hsl from 'hsl-to-hex';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline, OverlayView } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Polyline, OverlayView } from "react-google-maps"
 import { MarkerStyle, MarkerText, MarkerSubText } from './Marker';
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>

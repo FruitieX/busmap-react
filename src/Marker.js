@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/primitives';
-import styledWeb from 'styled-components';
 import { indexToHue } from './utils/routes';
 import { Touchable } from 'react-primitives';
 

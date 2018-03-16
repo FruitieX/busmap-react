@@ -20,9 +20,11 @@ const NoLines = styled.Text`
   color: #777;
   padding-left: 12px;
 `;
+/*
 const Suggestion = styled.Touchable`
   background-color: ${props => props.isSelected ? 'lightgray' : 'white'};
 `;
+*/
 
 export default class Autocomplete extends React.PureComponent {
   state = {

@@ -93,6 +93,7 @@ class App extends Component {
       if (availableRoute) {
         const gtfsId = availableRoute.gtfsId;
         // gtfsId is in format HSL:1234, mqtt wants only 1234 part
+        // eslint-disable-next-line
         const [trash, mqttLineId] = gtfsId.match(/.+:(.+)/);
         //this.mqtt.subscribe(`/hfp/v1/journey/`);
         const topic = `/hfp/v1/journey/+/+/+/+/${mqttLineId}/#`
