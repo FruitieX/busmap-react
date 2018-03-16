@@ -112,8 +112,8 @@ export default class Autocomplete extends React.PureComponent {
 
   render() {
     return (
-      <div style={{ height: 30, position: 'relative' }}>
-        <div style={{ backgroundColor: 'white', position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', alignItems: 'center', zIndex: 1, overflowX: 'auto', overflowY: 'hidden' }}>
+      <div style={{ minHeight: 30, position: 'relative', display: 'flex', alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', zIndex: 1, overflowX: 'auto', overflowY: 'hidden' }}>
           <ReactAutocomplete
             items={this.findLines()}
             getItemValue={this.getItemValue}
