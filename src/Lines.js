@@ -114,6 +114,7 @@ export default class Autocomplete extends React.PureComponent {
   getItemValue = item => item.shortName;
 
   onMenuVisibilityChange = isOpen => !isOpen && this.setState({ search: '' });
+  onBlur = () => this.setState({ search: '' });
 
   setScrollRef = scroll => this.scroll = scroll;
 
@@ -130,7 +131,7 @@ export default class Autocomplete extends React.PureComponent {
             onSelect={this.submitHandler}
             onMenuVisibilityChange={this.onMenuVisibilityChange}
             open={this.state.search !== ''}
-            inputProps={{ placeholder: 'Enter bus line number' }}
+            inputProps={{ placeholder: 'Enter bus line number', onBlur: this.onBlur }}
             ref={this.saveRef}
             wrapperStyle={{ zIndex: 10 }}
             menuStyle={{ position: 'absolute', height: 220, maxHeight: '80vh', maxWidth: 500, backgroundColor: 'white', overflow: 'auto', left: 0, top: 30, boxShadow: '0 10px 10px 0 rgba(0, 0, 0, 0.1)', }}

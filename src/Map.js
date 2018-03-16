@@ -4,10 +4,15 @@ import { indexToHue } from './utils/routes';
 import { withScriptjs, withGoogleMap, GoogleMap, Polyline, OverlayView } from "react-google-maps"
 import { MarkerStyle, MarkerText, MarkerSubText } from './Marker';
 
+const blurEverything = () => {
+  document.activeElement.blur();
+}
+
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={12}
     defaultCenter={{ lat: 60.1700423, lng: 24.9340991 }}
+    onClick={blurEverything}
   >
     {props.children}
   </GoogleMap>
