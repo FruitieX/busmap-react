@@ -45,7 +45,6 @@ export default class Autocomplete extends Component {
       return;
     }
 
-    console.log(this.input);
     if (this.input) {
       this.input.blur();
     }

@@ -36,7 +36,7 @@ class App extends Component {
     getRoutes().then(this.props.setAvailableRoutes);
     this.fetchPolylinesForLines(this.props.lines);
 
-    this.mqtt = mqtt.connect('ws://mqtt.hsl.fi:1883');
+    this.mqtt = mqtt.connect('wss://mqtt.hsl.fi');
     this.mqtt.on('message', this.handleMessage);
     this.subscribeToLines(this.props.lines);
     this.updateInterval = setInterval(this.doUpdate, 1000);
