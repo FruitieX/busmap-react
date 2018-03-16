@@ -36,6 +36,10 @@ export default class Autocomplete extends React.PureComponent {
     this.setState({ search: e.target.value })
   };
   submitHandler = lineId => {
+    if (this.input) {
+      this.input.blur();
+    }
+
     if (!lineId || !lineId.length) return;
 
     this.setState({ search: '' });
@@ -45,10 +49,6 @@ export default class Autocomplete extends React.PureComponent {
 
     if (routeIndex === -1) {
       return;
-    }
-
-    if (this.input) {
-      this.input.blur();
     }
 
     this.props.addLine(this.props.availableRoutes[routeIndex].shortName);
