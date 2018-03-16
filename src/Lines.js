@@ -18,10 +18,7 @@ const BusDest = styled.Text`
 `;
 const NoLines = styled.Text`
   color: #777;
-  padding-top: 12px;
   padding-left: 12px;
-  width: 100%;
-  text-align: center;
 `;
 const Suggestion = styled.Touchable`
   background-color: ${props => props.isSelected ? 'lightgray' : 'white'};
@@ -109,13 +106,15 @@ export default class Autocomplete extends Component {
     this.input = input;
   };
 
+  getItemValue = item => item.shortName;
+
   render() {
     return (
       <div style={{ height: 30, position: 'relative' }}>
-        <div style={{ backgroundColor: 'white', position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', height: 30, alignItems: 'center', zIndex: 1 }}>
+        <div style={{ backgroundColor: 'white', position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', height: 30, alignItems: 'center', zIndex: 1, overflowX: 'scroll' }}>
           <ReactAutocomplete
             items={this.findLines()}
-            getItemValue={(item) => item.shortName}
+            getItemValue={this.getItemValue}
             renderItem={this.renderItem}
             value={this.state.search}
             onChange={this.changeHandler}
