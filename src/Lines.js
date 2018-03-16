@@ -110,10 +110,12 @@ export default class Autocomplete extends React.PureComponent {
 
   getItemValue = item => item.shortName;
 
+  onMenuVisibilityChange = isOpen => !isOpen && this.setState({ search: '' });
+
   render() {
     return (
       <div style={{ minHeight: 30, position: 'relative', display: 'flex', alignItems: 'center' }}>
-        <div style={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', zIndex: 1, overflowX: 'auto', overflowY: 'hidden' }}>
+        <div style={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', zIndex: 1, overflowX: this.state.search !== '' ? 'hidden' : 'auto' }}>
           <ReactAutocomplete
             items={this.findLines()}
             getItemValue={this.getItemValue}
@@ -121,6 +123,7 @@ export default class Autocomplete extends React.PureComponent {
             value={this.state.search}
             onChange={this.changeHandler}
             onSelect={this.submitHandler}
+            onMenuVisibilityChange={this.onMenuVisibilityChange}
             inputProps={{ placeholder: 'Enter bus line number' }}
             ref={this.saveRef}
             wrapperStyle={{ zIndex: 10 }}
