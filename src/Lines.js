@@ -31,7 +31,10 @@ export default class Autocomplete extends React.PureComponent {
     search: '',
   };
 
-  changeHandler = e => this.setState({ search: e.target.value });
+  changeHandler = e => {
+    if(this.scroll) this.scroll.scrollLeft = 0;
+    this.setState({ search: e.target.value })
+  };
   submitHandler = lineId => {
     if (!lineId || !lineId.length) return;
 
@@ -112,10 +115,12 @@ export default class Autocomplete extends React.PureComponent {
 
   onMenuVisibilityChange = isOpen => !isOpen && this.setState({ search: '' });
 
+  setScrollRef = scroll => this.scroll = scroll;
+
   render() {
     return (
       <div style={{ minHeight: 30, position: 'relative', display: 'flex', alignItems: 'center' }}>
-        <div style={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', zIndex: 1, overflowX: this.state.search !== '' ? 'hidden' : 'auto' }}>
+        <div ref={this.setScrollRef} style={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', zIndex: 1, overflowX: this.state.search !== '' ? 'hidden' : 'auto' }}>
           <ReactAutocomplete
             items={this.findLines()}
             getItemValue={this.getItemValue}
@@ -124,9 +129,11 @@ export default class Autocomplete extends React.PureComponent {
             onChange={this.changeHandler}
             onSelect={this.submitHandler}
             onMenuVisibilityChange={this.onMenuVisibilityChange}
+            open={this.state.search !== ''}
             inputProps={{ placeholder: 'Enter bus line number' }}
             ref={this.saveRef}
             wrapperStyle={{ zIndex: 10 }}
+            menuStyle={{ position: 'absolute', height: 220, maxHeight: '80vh', maxWidth: 500, backgroundColor: 'white', overflow: 'auto', left: 0, top: 30, boxShadow: '0 10px 10px 0 rgba(0, 0, 0, 0.1)', }}
           />
           {this.renderSelectedLines()}
         </div>
