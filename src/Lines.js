@@ -96,7 +96,15 @@ export default class Autocomplete extends React.PureComponent {
 
     const lines = this.props.availableRoutes
       .filter(line => !line.shortName.toLowerCase().indexOf(search))
-      .sort((a, b) => a.shortName.length - b.shortName.length);
+      .sort((a, b) => {
+        // First sort by length (shorter first)
+        if (a.shortName.length !== b.shortName.length) {
+          return a.shortName.length - b.shortName.length;
+        }
+
+        // Then sort by alphanumeric
+        return a.shortName.localeCompare(b.shortName);
+      });
 
     if (!lines.length) {
       return [{
