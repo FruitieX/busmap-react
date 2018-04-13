@@ -44,7 +44,11 @@ class App extends Component {
 
   doUpdate = () => {
     this.data = this.data
-      .filter(vehicle => this.props.lines.includes(vehicle.desi));
+      // only display selected lines
+      .filter(vehicle => this.props.lines.includes(vehicle.desi))
+      // get rid of stale vehicles (no updates in >= 10 seconds)
+      .filter(vehicle => new Date().getTime() - vehicle.lastUpdate < 10000);
+
     this.setState({ markers: this.data });
   };
 
@@ -71,6 +75,8 @@ class App extends Component {
       // translate hsl coords to gmaps
       vehicle.lat = vehicle.lat;
       vehicle.lng = vehicle.long;
+
+      vehicle.lastUpdate = new Date().getTime();
 
       // add vehicle to this.data
       const vehIndex = this.data.findIndex(old => old.veh === vehicle.veh);
