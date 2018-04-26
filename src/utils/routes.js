@@ -44,12 +44,25 @@ export const getRoutes = () => {
   return new Promise(resolve => doFetch(resolve));
 }
 
+const yyyymmdd = date => {
+  let mm = date.getMonth() + 1; // getMonth() is zero-based
+  let dd = date.getDate();
+
+  return [date.getFullYear(),
+    (mm>9 ? '' : '0') + mm,
+    (dd>9 ? '' : '0') + dd
+  ].join('');
+}
+
 const polylineQuery = ids =>
 `{
   routes(ids: ${ids}) {
     gtfsId
     shortName
     patterns {
+      tripsForDate(serviceDate: "${yyyymmdd(new Date())}") {
+        id
+      }
       geometry {
         lat
         lon
@@ -81,8 +94,8 @@ export const getPolylines = (gtfsIdLines) => {
       response.data.routes.forEach(route => {
         const polyline = [];
 
-        // sort by pattern length and choose longest
-        route.patterns.sort((a, b) => b.geometry.length - a.geometry.length);
+        // sort by number of trips for today
+        route.patterns.sort((a, b) => b.tripsForDate.length - a.tripsForDate.length);
         route.patterns[0].geometry.forEach(coord => {
           polyline.push({
             lat: coord.lat,
