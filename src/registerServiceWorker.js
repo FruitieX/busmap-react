@@ -58,6 +58,7 @@ function registerValidSW(swUrl) {
     .then(registration => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
+        console.log('Downloading update... (will auto-reload when done)');
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
