@@ -2,7 +2,8 @@
 
 Realtime location viewer for Helsinki area public transport vehicles
 
-Live: https://busmap.surge.sh
+- Live: https://busmap.surge.sh
+- Android app available on [Gogole Play](https://play.google.com/store/apps/details?id=org.fruitiex.busmap)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
