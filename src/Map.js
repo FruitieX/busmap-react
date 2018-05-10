@@ -51,7 +51,7 @@ export default class Map extends Component {
       .forEach(([shortName, polyline]) => {
         const index = this.props.lines.indexOf(shortName);
         const color = indexToHue(index, this.props.lines.length);
-        const hexColor = `hsla(${color}, 70%, 50%, 0.7)`;
+        const hexColor = `hsla(${color}, 100%, 30%, 1)`;
 
         polylines.push(
           <Polyline
